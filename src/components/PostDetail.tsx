@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { PostDetails } from '../interfaces';
 import dayjs from 'dayjs';
 import DateIconSvg from './DateIconSvg';
+import Image from 'next/image';
 
 interface Props {
     post: PostDetails;
@@ -10,7 +11,7 @@ interface Props {
 const PostDetail: React.FC<Props> = ({ post }) => {
     useEffect(() => {
         document.title = `${post.title} | Graph CMS Blog`;
-    }, []);
+    }, [post.title]);
 
     const getContentFragment = (
         index: number,
@@ -61,7 +62,8 @@ const PostDetail: React.FC<Props> = ({ post }) => {
                 );
             case 'image':
                 return (
-                    <img
+                    <Image
+                        unoptimized
                         key={index}
                         alt={obj.title}
                         height={obj.height}
@@ -77,7 +79,8 @@ const PostDetail: React.FC<Props> = ({ post }) => {
     return (
         <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
             <div className="relative overflow-hidden shadow-md mb-6">
-                <img
+                <Image
+                    unoptimized
                     src={post.featuredImage.url}
                     alt={post.title}
                     className="object-top h-full w-full rounded-t-lg"
@@ -86,7 +89,8 @@ const PostDetail: React.FC<Props> = ({ post }) => {
             <div className="px-4 lg:p-0">
                 <div className="flex items-center mb-8 w-full">
                     <div className="flex items-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
-                        <img
+                        <Image
+                            unoptimized
                             src={post.author.photo.url}
                             alt={post.author.name}
                             height="30px"

@@ -13,7 +13,7 @@ const Comments: React.FC<Props> = ({ slug }) => {
 
     useEffect(() => {
         getComments(slug).then(data => setComments(data));
-    }, []);
+    }, [slug]);
 
     return (
         <>

@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import { RecentPost } from '../interfaces';
 import { getRecentPosts, getSimilarPosts } from '../services';
+import Image from 'next/image';
 
 interface Props {
     categories?: string[] | null;
@@ -20,7 +21,7 @@ const PostWidget: React.FC<Props> = ({ categories = null, slug = '' }) => {
         } else {
             getRecentPosts().then(results => setRelatedPosts(results));
         }
-    }, [slug]);
+    }, [slug, categories]);
 
     return (
         <div className="bg-white shadow-lg rounded-lg p-8 mb-8">
@@ -30,7 +31,8 @@ const PostWidget: React.FC<Props> = ({ categories = null, slug = '' }) => {
             {relatedPosts.map(post => (
                 <div key={post.title} className="flex items-center w-full mb-4">
                     <div className="w-16 flex-none">
-                        <img
+                        <Image
+                            unoptimized
                             src={post.featuredImage.url}
                             alt={post.title}
                             height="60px"
