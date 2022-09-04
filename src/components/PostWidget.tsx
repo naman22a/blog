@@ -31,8 +31,7 @@ const PostWidget: React.FC<Props> = ({ categories = null, slug = '' }) => {
             {relatedPosts.map(post => (
                 <div key={post.title} className="flex items-center w-full mb-4">
                     <div className="w-16 flex-none">
-                        <Image
-                            unoptimized
+                        <img
                             src={post.featuredImage.url}
                             alt={post.title}
                             height="60px"
